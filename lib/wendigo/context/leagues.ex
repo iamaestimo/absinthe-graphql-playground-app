@@ -21,4 +21,7 @@ defmodule Wendigo.Context.Leagues do
     |> offset(^offset)
     |> Repo.all()
   end
+
+  @doc "Defines a new ecto data source"
+  def datasource, do: Dataloader.Ecto.new(Repo)
 end

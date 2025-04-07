@@ -32,4 +32,13 @@ defmodule Wendigo.Context.Teams do
     |> where(team_id: ^id)
     |> Repo.all()
   end
+
+  @doc "Defines a new ecto data source"
+  def datasource, do: Dataloader.Ecto.new(Repo, query: &query/2)
+
+  @doc "An example dataloader query function."
+  def query(queriable, args) do
+    Logger.debug("Teams.query, args = #{inspect(args)}")
+    queriable
+  end
 end

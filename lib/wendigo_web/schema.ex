@@ -3,7 +3,6 @@ defmodule WendigoWeb.Schema do
   The Wendigo GraphQL schema. Defines queries and mutations.
   """
   alias Wendigo.Context.{Leagues, Seasons, Teams}
-  alias Wendigo.Datasource
   alias WendigoWeb.Resolvers.{LeagueResolver, SeasonResolver, TeamResolver}
   use Absinthe.Schema
 
@@ -60,13 +59,11 @@ defmodule WendigoWeb.Schema do
   # Dataloader
 
   def context(ctx) do
-    source = Datasource.new()
-
     loader =
       Dataloader.new()
-      |> Dataloader.add_source(Leagues, source)
-      |> Dataloader.add_source(Seasons, source)
-      |> Dataloader.add_source(Teams, source)
+      |> Dataloader.add_source(Leagues, Leagues.datasource())
+      |> Dataloader.add_source(Seasons, Seasons.datasource())
+      |> Dataloader.add_source(Teams, Teams.datasource())
 
     Map.put(ctx, :loader, loader)
   end
