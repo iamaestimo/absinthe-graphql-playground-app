@@ -13,7 +13,7 @@ defmodule WendigoWeb.Resolvers.SeasonResolver do
   end
 
   def list_seasons(_parent, %{first: first}, _resolution) do
-    {:ok, Seasons.list(first, 0)}
+    {:ok, Seasons.list(first)}
   end
 
   def list_seasons(_parent, %{first: first, offset: offset}, _resolution) do

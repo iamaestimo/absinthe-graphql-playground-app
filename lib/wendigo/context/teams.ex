@@ -4,8 +4,13 @@ defmodule Wendigo.Context.Teams do
   """
   alias Wendigo.Repo
   alias Wendigo.Schema.{Player, Team}
+
   import Ecto.Query
+
   require Logger
+
+  # Put a max limit on any list queries
+  @query_limit Application.compile_env(:wendigo, :max_page_size)
 
   @doc "Get a team"
   def get(id), do: Repo.get(Team, id)
@@ -14,6 +19,7 @@ defmodule Wendigo.Context.Teams do
   def list(season_id) do
     Team
     |> where(season_id: ^season_id)
+    |> limit(^@query_limit)
     |> Repo.all()
   end
 
@@ -22,6 +28,7 @@ defmodule Wendigo.Context.Teams do
     Team
     |> where(season_id: ^season_id)
     |> where(league_id: ^league_id)
+    |> limit(^@query_limit)
     |> Repo.all()
   end
 
@@ -29,6 +36,7 @@ defmodule Wendigo.Context.Teams do
   def list_players(id) do
     Player
     |> where(team_id: ^id)
+    |> limit(^@query_limit)
     |> Repo.all()
   end
 

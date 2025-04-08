@@ -13,7 +13,7 @@ defmodule WendigoWeb.Resolvers.LeagueResolver do
   end
 
   def list_leagues(_parent, %{first: first}, _resolution) do
-    {:ok, Leagues.list(first, 0)}
+    {:ok, Leagues.list(first)}
   end
 
   def list_leagues(_parent, %{first: first, offset: offset}, _resolution) do

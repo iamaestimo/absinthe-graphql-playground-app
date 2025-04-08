@@ -12,12 +12,12 @@ defmodule WendigoWeb.Resolvers.TeamResolver do
     end
   end
 
-  def list_teams(_parent, %{season_id: season_id}, _resolution) do
-    {:ok, Teams.list(season_id)}
-  end
-
   def list_teams(_parent, %{season_id: season_id, league_id: league_id}, _resolution) do
     {:ok, Teams.list(season_id, league_id)}
+  end
+
+  def list_teams(_parent, %{season_id: season_id}, _resolution) do
+    {:ok, Teams.list(season_id)}
   end
 
   def list_players(_parent, %{team_id: team_id}, _resolution) do

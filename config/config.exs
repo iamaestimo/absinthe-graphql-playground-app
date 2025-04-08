@@ -1,9 +1,11 @@
 import Config
 
-# Repos
+# General
 config :wendigo,
   ecto_repos: [Wendigo.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  min_page_size: 10,
+  max_page_size: 100
 
 # Endpoint
 config :wendigo, WendigoWeb.Endpoint,

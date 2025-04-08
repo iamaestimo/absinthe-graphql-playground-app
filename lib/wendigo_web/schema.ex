@@ -4,6 +4,7 @@ defmodule WendigoWeb.Schema do
   """
   alias Wendigo.Context.{Leagues, Seasons, Teams}
   alias WendigoWeb.Resolvers.{LeagueResolver, SeasonResolver, TeamResolver}
+
   use Absinthe.Schema
 
   import_types(Absinthe.Type.Custom)
