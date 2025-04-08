@@ -8,7 +8,12 @@ defmodule WendigoWeb.Router do
 
   scope "/wendigo/api" do
     pipe_through :api
-    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: WendigoWeb.Schema
+
+    # Only show GraphiQL in development
+    if Mix.env() == :dev do
+      forward "/graphiql", Absinthe.Plug.GraphiQL, schema: WendigoWeb.Schema
+    end
+
     forward "/graphql", Absinthe.Plug, schema: WendigoWeb.Schema
   end
 end
