@@ -2,9 +2,9 @@ defmodule Wendigo.Schema.Team do
   @moduledoc """
   Schema for the `teams` table.
   """
-  use Ecto.Schema
-  import Ecto.Changeset
   alias Wendigo.Schema.{League, Player, Season}
+  import Ecto.Changeset
+  use Ecto.Schema
 
   @type t() :: %__MODULE__{}
 

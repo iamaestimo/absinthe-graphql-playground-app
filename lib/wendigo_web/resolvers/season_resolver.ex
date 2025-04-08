@@ -3,13 +3,9 @@ defmodule WendigoWeb.Resolvers.SeasonResolver do
   GraphQL resolver for seasons.
   """
   alias Wendigo.Context.Seasons
-  alias Wendigo.Schema.Team
   alias WendigoWeb.Error
 
-  def get_season(_parent, %{id: id}, _resolution), do: get_season(id)
-  def get_season(%Team{} = team, _args, _resolution), do: get_season(team.season_id)
-
-  defp get_season(id) do
+  def get_season(_parent, %{id: id}, _resolution) do
     case Seasons.get(id) do
       nil -> Error.new("Season not found: #{id}")
       season -> {:ok, season}
@@ -25,6 +21,6 @@ defmodule WendigoWeb.Resolvers.SeasonResolver do
   end
 
   def list_seasons(_parent, _args, _resolution) do
-    {:ok, Seasons.list()}
+    {:ok, Seasons.first_page()}
   end
 end

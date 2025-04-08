@@ -3,9 +3,9 @@ defmodule WendigoWeb.Schema.Types do
   GraphQL schema type definitions.
   """
   use Absinthe.Schema.Notation
-  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
   alias Wendigo.Context.{Leagues, Seasons, Teams}
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
 
   object :league do
     field :id, :id
@@ -27,6 +27,7 @@ defmodule WendigoWeb.Schema.Types do
     field :usahn, :string
     field :jersey_number, :string
     field :position, :string
+    field :team, :team, resolve: dataloader(Teams)
   end
 
   object :team do

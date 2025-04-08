@@ -3,13 +3,9 @@ defmodule WendigoWeb.Resolvers.LeagueResolver do
   GraphQL resolver for leagues.
   """
   alias Wendigo.Context.Leagues
-  alias Wendigo.Schema.Team
   alias WendigoWeb.Error
 
-  def get_league(_parent, %{id: id}, _resolution), do: get_league(id)
-  def get_league(%Team{} = team, _args, _resolution), do: get_league(team.league_id)
-
-  defp get_league(id) do
+  def get_league(_parent, %{id: id}, _resolution) do
     case Leagues.get(id) do
       nil -> Error.new("League not found: #{id}")
       league -> {:ok, league}
@@ -25,6 +21,6 @@ defmodule WendigoWeb.Resolvers.LeagueResolver do
   end
 
   def list_leagues(_parent, _args, _resolution) do
-    {:ok, Leagues.list()}
+    {:ok, Leagues.first_page()}
   end
 end

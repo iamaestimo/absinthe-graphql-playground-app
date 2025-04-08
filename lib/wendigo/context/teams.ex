@@ -5,7 +5,6 @@ defmodule Wendigo.Context.Teams do
   alias Wendigo.Repo
   alias Wendigo.Schema.{Player, Team}
   import Ecto.Query
-
   require Logger
 
   @doc "Get a team"
@@ -32,6 +31,9 @@ defmodule Wendigo.Context.Teams do
     |> where(team_id: ^id)
     |> Repo.all()
   end
+
+  @doc "Get a player"
+  def get_player(id), do: Repo.get(Player, id)
 
   @doc "Defines a new ecto data source"
   def datasource, do: Dataloader.Ecto.new(Repo, query: &query/2)

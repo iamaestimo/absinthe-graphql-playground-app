@@ -2,8 +2,8 @@ defmodule Wendigo.Schema.Season do
   @moduledoc """
   Schema for the `seasons` table.
   """
-  use Ecto.Schema
   import Ecto.Changeset
+  use Ecto.Schema
 
   @type t() :: %__MODULE__{}
 

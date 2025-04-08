@@ -2,16 +2,16 @@ defmodule Wendigo.Context.Leagues do
   @moduledoc """
   A data context for managing leagues.
   """
-  alias Wendigo.{Repo, Schema.League}
+  alias Wendigo.Repo
+  alias Wendigo.Schema.League
   import Ecto.Query
-
   require Logger
 
   @doc "Get a league"
   def get(id), do: Repo.get(League, id)
 
   @doc "Get the first page of leagues"
-  def list, do: list(10, 0)
+  def first_page, do: list(10, 0)
 
   @doc "Get a page of leagues"
   def list(first, offset) do

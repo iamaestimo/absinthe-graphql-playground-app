@@ -54,6 +54,12 @@ defmodule WendigoWeb.Schema do
       arg(:team_id, non_null(:id))
       resolve(&TeamResolver.list_players/3)
     end
+
+    @desc "Get a player"
+    field :player, :player do
+      arg(:id, non_null(:id))
+      resolve(&TeamResolver.get_player/3)
+    end
   end
 
   # Dataloader

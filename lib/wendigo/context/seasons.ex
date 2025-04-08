@@ -2,16 +2,16 @@ defmodule Wendigo.Context.Seasons do
   @moduledoc """
   A data context for managing seasons.
   """
-  alias Wendigo.{Repo, Schema.Season}
+  alias Wendigo.Repo
+  alias Wendigo.Schema.Season
   import Ecto.Query
-
   require Logger
 
   @doc "Get a season"
   def get(id), do: Repo.get(Season, id)
 
-  @doc "Get recent seasons"
-  def list, do: list(10, 0)
+  @doc "Get the first page of seasons"
+  def first_page, do: list(10, 0)
 
   @doc "Get a page of seasons"
   def list(first, offset) do

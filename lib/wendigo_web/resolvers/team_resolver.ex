@@ -3,7 +3,6 @@ defmodule WendigoWeb.Resolvers.TeamResolver do
   GraphQL resolver for teams and players.
   """
   alias Wendigo.Context.Teams
-  alias Wendigo.Schema.Team
   alias WendigoWeb.Error
 
   def get_team(_parent, %{id: id}, _resolution) do
@@ -21,11 +20,14 @@ defmodule WendigoWeb.Resolvers.TeamResolver do
     {:ok, Teams.list(season_id, league_id)}
   end
 
-  def list_players(%Team{} = team, _args, _resolution) do
-    {:ok, Teams.list_players(team.id)}
-  end
-
   def list_players(_parent, %{team_id: team_id}, _resolution) do
     {:ok, Teams.list_players(team_id)}
+  end
+
+  def get_player(_parent, %{id: id}, _resolution) do
+    case Teams.get_player(id) do
+      nil -> Error.new("Player not found: #{id}")
+      player -> {:ok, player}
+    end
   end
 end
