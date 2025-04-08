@@ -12,12 +12,12 @@ defmodule WendigoWeb.Resolvers.SeasonResolver do
     end
   end
 
-  def list_seasons(_parent, %{first: first}, _resolution) do
-    {:ok, Seasons.list(first)}
-  end
-
   def list_seasons(_parent, %{first: first, offset: offset}, _resolution) do
     {:ok, Seasons.list(first, offset)}
+  end
+
+  def list_seasons(_parent, %{first: first}, _resolution) do
+    {:ok, Seasons.list(first)}
   end
 
   def list_seasons(_parent, _args, _resolution) do

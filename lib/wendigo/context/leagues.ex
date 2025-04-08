@@ -6,7 +6,7 @@ defmodule Wendigo.Context.Leagues do
   alias Wendigo.Schema.League
 
   import Ecto.Query
-  import Wendigo.Context.Clamp, only: [clamp: 1]
+  import Wendigo.Context.Clamp, only: [clamp: 1, non_negative: 1]
 
   require Logger
 
@@ -24,7 +24,7 @@ defmodule Wendigo.Context.Leagues do
     League
     |> order_by(asc: :inserted_at)
     |> limit(^clamp(first))
-    |> offset(^offset)
+    |> offset(^non_negative(offset))
     |> Repo.all()
   end
 

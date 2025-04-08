@@ -12,12 +12,12 @@ defmodule WendigoWeb.Resolvers.LeagueResolver do
     end
   end
 
-  def list_leagues(_parent, %{first: first}, _resolution) do
-    {:ok, Leagues.list(first)}
-  end
-
   def list_leagues(_parent, %{first: first, offset: offset}, _resolution) do
     {:ok, Leagues.list(first, offset)}
+  end
+
+  def list_leagues(_parent, %{first: first}, _resolution) do
+    {:ok, Leagues.list(first)}
   end
 
   def list_leagues(_parent, _args, _resolution) do

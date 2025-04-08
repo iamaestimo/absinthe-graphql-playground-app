@@ -9,4 +9,7 @@ defmodule Wendigo.Context.Clamp do
   def clamp(first) when first < @min_page_size, do: @min_page_size
   def clamp(first) when first > @max_page_size, do: @max_page_size
   def clamp(first), do: first
+
+  @doc "Ensure a number is not negative"
+  def non_negative(offset), do: if(offset < 0, do: 0, else: offset)
 end

@@ -6,7 +6,7 @@ defmodule Wendigo.Context.Seasons do
   alias Wendigo.Schema.Season
 
   import Ecto.Query
-  import Wendigo.Context.Clamp, only: [clamp: 1]
+  import Wendigo.Context.Clamp, only: [clamp: 1, non_negative: 1]
 
   require Logger
 
@@ -24,7 +24,7 @@ defmodule Wendigo.Context.Seasons do
     Season
     |> order_by(desc: :start_date)
     |> limit(^clamp(first))
-    |> offset(^offset)
+    |> offset(^non_negative(offset))
     |> Repo.all()
   end
 
