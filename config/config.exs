@@ -9,7 +9,7 @@ config :wendigo,
 
 # Endpoint
 config :wendigo, WendigoWeb.Endpoint,
-  url: [host: "localhost", path: "/wendigo"],
+  url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [json: WendigoWeb.ErrorJSON],

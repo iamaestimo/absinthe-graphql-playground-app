@@ -11,9 +11,15 @@ defmodule WendigoWeb.Router do
 
     # Only show GraphiQL in development
     if Mix.env() == :dev do
-      forward "/graphiql", Absinthe.Plug.GraphiQL, schema: WendigoWeb.Schema
+      forward "/graphiql", Absinthe.Plug.GraphiQL,
+        schema: WendigoWeb.Schema,
+        analyze_complexity: true,
+        max_complexity: 180
     end
 
-    forward "/graphql", Absinthe.Plug, schema: WendigoWeb.Schema
+    forward "/graphql", Absinthe.Plug,
+      schema: WendigoWeb.Schema,
+      analyze_complexity: true,
+      max_complexity: 50
   end
 end
