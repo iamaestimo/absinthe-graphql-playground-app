@@ -1,4 +1,4 @@
-defmodule WendigoWeb.Schema do
+defmodule WendigoWeb.GraphQL.Schema do
   @moduledoc """
   The Wendigo GraphQL schema. Defines queries and mutations.
   """
@@ -8,7 +8,7 @@ defmodule WendigoWeb.Schema do
   use Absinthe.Schema
 
   import_types(Absinthe.Type.Custom)
-  import_types(WendigoWeb.Schema.Types)
+  import_types(WendigoWeb.GraphQL.Types)
 
   query do
     @desc "Get a league"

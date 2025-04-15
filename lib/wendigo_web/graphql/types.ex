@@ -1,4 +1,4 @@
-defmodule WendigoWeb.Schema.Types do
+defmodule WendigoWeb.GraphQL.Types do
   @moduledoc """
   GraphQL schema type definitions.
   """
