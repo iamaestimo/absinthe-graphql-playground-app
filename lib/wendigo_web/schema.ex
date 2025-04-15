@@ -63,6 +63,29 @@ defmodule WendigoWeb.Schema do
     end
   end
 
+  mutation do
+    @desc "Create a season"
+    field :create_season, :season do
+      arg(:name, non_null(:string))
+      arg(:start_date, non_null(:date))
+      arg(:end_date, non_null(:date))
+      resolve(&SeasonResolver.create_season/3)
+    end
+
+    @desc "Rename a season"
+    field :rename_season, :season do
+      arg(:id, non_null(:id))
+      arg(:name, non_null(:string))
+      resolve(&SeasonResolver.update_season/3)
+    end
+
+    @desc "Delete a season"
+    field :delete_season, :season do
+      arg(:id, non_null(:id))
+      resolve(&SeasonResolver.delete_season/3)
+    end
+  end
+
   # Dataloader
 
   def context(ctx) do

@@ -1,5 +1,5 @@
 .PHONY: all
-all: format compile
+all: format compile lint
 
 .PHONY: format
 format:
@@ -8,6 +8,10 @@ format:
 .PHONY: compile
 compile:
 	mix compile --warnings-as-errors --all-warnings
+
+.PHONY: lint
+lint:
+	mix credo --all --strict
 
 .PHONY: test
 test:
