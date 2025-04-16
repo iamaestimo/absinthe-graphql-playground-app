@@ -8,8 +8,6 @@ defmodule Wendigo.Context.Leagues do
   import Ecto.Query
   import Wendigo.Context.Clamp, only: [clamp: 1, non_negative: 1]
 
-  require Logger
-
   # Read default page size from compile-time config
   @default_page_size Application.compile_env(:wendigo, :min_page_size)
 
@@ -27,6 +25,18 @@ defmodule Wendigo.Context.Leagues do
     |> offset(^non_negative(offset))
     |> Repo.all()
   end
+
+  @doc "Create a league"
+  def create(args),
+    do: Repo.insert(League.changeset(args))
+
+  @doc "Update a league"
+  def update(league, args),
+    do: Repo.update(League.changeset(league, args))
+
+  @doc "Delete a league"
+  def delete(league),
+    do: Repo.delete(league)
 
   @doc "Defines a new ecto data source"
   def datasource, do: Dataloader.Ecto.new(Repo)

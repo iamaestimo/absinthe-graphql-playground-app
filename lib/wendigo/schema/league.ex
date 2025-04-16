@@ -15,8 +15,6 @@ defmodule Wendigo.Schema.League do
   end
 
   @doc "Creates a changeset for a league"
-  def changeset(params), do: changeset(%__MODULE__{}, params)
-
   def changeset(struct, params) do
     struct
     |> cast(params, [:name, :level])
@@ -24,4 +22,7 @@ defmodule Wendigo.Schema.League do
     |> validate_length(:name, max: 100)
     |> validate_length(:level, max: 100)
   end
+
+  def changeset(params),
+    do: changeset(%__MODULE__{}, params)
 end

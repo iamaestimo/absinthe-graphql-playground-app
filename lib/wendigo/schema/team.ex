@@ -19,8 +19,6 @@ defmodule Wendigo.Schema.Team do
   end
 
   @doc "Creates a changeset for a team"
-  def changeset(params), do: changeset(%__MODULE__{}, params)
-
   def changeset(struct, params) do
     struct
     |> cast(params, [:name, :captain, :league_id, :season_id])
@@ -30,4 +28,7 @@ defmodule Wendigo.Schema.Team do
     |> foreign_key_constraint(:league_id)
     |> foreign_key_constraint(:season_id)
   end
+
+  def changeset(params),
+    do: changeset(%__MODULE__{}, params)
 end

@@ -20,8 +20,6 @@ defmodule Wendigo.Schema.Player do
   end
 
   @doc "Creates a changeset for a player"
-  def changeset(params), do: changeset(%__MODULE__{}, params)
-
   def changeset(struct, params) do
     struct
     |> cast(params, [:name, :contact, :usahn, :jersey_number, :position, :team_id])
@@ -33,4 +31,7 @@ defmodule Wendigo.Schema.Player do
     |> validate_length(:position, max: 100)
     |> foreign_key_constraint(:team_id)
   end
+
+  def changeset(params),
+    do: changeset(%__MODULE__{}, params)
 end

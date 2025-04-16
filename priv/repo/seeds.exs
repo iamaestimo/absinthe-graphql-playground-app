@@ -18,21 +18,15 @@ league =
   |> League.changeset()
   |> Repo.insert!()
 
-%{name: "Rocky Mountain", level: "Intermediate"}
-|> League.changeset()
-|> Repo.insert!()
-
-%{name: "Giants", level: "Beginner"}
-|> League.changeset()
-|> Repo.insert!()
-
-%{name: "Mixed Lower", level: "Beginner / Intermediate"}
-|> League.changeset()
-|> Repo.insert!()
-
-%{name: "Mixed Upper", level: "Intermediate / Advanced"}
-|> League.changeset()
-|> Repo.insert!()
+[
+  %{name: "Rocky Mountain", level: "Intermediate"},
+  %{name: "Giants", level: "Novice"},
+  %{name: "Mixed Lower", level: "Novice / Intermediate"},
+  %{name: "Mixed Upper", level: "Intermediate / Advanced"}
+]
+|> Enum.each(fn args ->
+  Repo.insert!(League.changeset(args))
+end)
 
 # SEASONS
 

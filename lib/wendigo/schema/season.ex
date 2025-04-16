@@ -16,12 +16,13 @@ defmodule Wendigo.Schema.Season do
   end
 
   @doc "Creates a changeset for a season"
-  def changeset(params), do: changeset(%__MODULE__{}, params)
-
   def changeset(struct, params) do
     struct
     |> cast(params, [:name, :start_date, :end_date])
     |> validate_required([:name, :start_date, :end_date])
     |> validate_length(:name, max: 100)
   end
+
+  def changeset(params),
+    do: changeset(%__MODULE__{}, params)
 end
