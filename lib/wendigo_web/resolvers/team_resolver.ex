@@ -30,4 +30,20 @@ defmodule WendigoWeb.Resolvers.TeamResolver do
       player -> {:ok, player}
     end
   end
+
+  @doc "Resolver function for creating teams"
+  def create_team(_parent, args, _resolution) do
+    case Teams.create(args) do
+      {:error, cs} -> Error.new("Failed to create team", cs)
+      result -> result
+    end
+  end
+
+  @doc "Resolver function for deleting teams"
+  def delete_team(_parent, %{id: id}, _resolution) do
+    case Teams.get(id) do
+      nil -> Error.new("Team not found: #{id}")
+      team -> Teams.delete(team)
+    end
+  end
 end

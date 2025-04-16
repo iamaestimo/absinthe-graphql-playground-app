@@ -104,6 +104,21 @@ defmodule WendigoWeb.GraphQL.Schema do
       arg(:id, non_null(:id))
       resolve(&LeagueResolver.delete_league/3)
     end
+
+    @desc "Create a team"
+    field :create_team, :team do
+      arg(:name, non_null(:string))
+      arg(:season_id, non_null(:id))
+      arg(:league_id, non_null(:id))
+      arg(:captain, :string)
+      resolve(&TeamResolver.create_team/3)
+    end
+
+    @desc "Delete a team"
+    field :delete_team, :team do
+      arg(:id, non_null(:id))
+      resolve(&TeamResolver.delete_team/3)
+    end
   end
 
   # Dataloader

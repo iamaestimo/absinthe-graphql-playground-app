@@ -43,6 +43,14 @@ defmodule Wendigo.Context.Teams do
   @doc "Get a player"
   def get_player(id), do: Repo.get(Player, id)
 
+  @doc "Create a team"
+  def create(args),
+    do: Repo.insert(Team.changeset(args))
+
+  @doc "Delete a team"
+  def delete(team),
+    do: Repo.delete(team)
+
   @doc "Defines a new ecto data source"
   def datasource, do: Dataloader.Ecto.new(Repo, query: &query/2)
 
