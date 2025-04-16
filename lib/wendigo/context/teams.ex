@@ -3,7 +3,7 @@ defmodule Wendigo.Context.Teams do
   A data context for managing teams.
   """
   alias Wendigo.Repo
-  alias Wendigo.Schema.{Player, Team}
+  alias Wendigo.Schema.Team
 
   import Ecto.Query
 
@@ -13,7 +13,8 @@ defmodule Wendigo.Context.Teams do
   @query_limit Application.compile_env(:wendigo, :max_page_size)
 
   @doc "Get a team"
-  def get(id), do: Repo.get(Team, id)
+  def get(id),
+    do: Repo.get(Team, id)
 
   @doc "Get teams for a season"
   def list(season_id) do
@@ -32,17 +33,6 @@ defmodule Wendigo.Context.Teams do
     |> Repo.all()
   end
 
-  @doc "Get the list of players on a team"
-  def list_players(id) do
-    Player
-    |> where(team_id: ^id)
-    |> limit(^@query_limit)
-    |> Repo.all()
-  end
-
-  @doc "Get a player"
-  def get_player(id), do: Repo.get(Player, id)
-
   @doc "Create a team"
   def create(args),
     do: Repo.insert(Team.changeset(args))
@@ -52,7 +42,8 @@ defmodule Wendigo.Context.Teams do
     do: Repo.delete(team)
 
   @doc "Defines a new ecto data source"
-  def datasource, do: Dataloader.Ecto.new(Repo, query: &query/2)
+  def datasource,
+    do: Dataloader.Ecto.new(Repo, query: &query/2)
 
   @doc "An example dataloader query function."
   def query(queriable, args) do

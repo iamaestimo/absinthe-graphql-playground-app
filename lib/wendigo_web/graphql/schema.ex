@@ -2,8 +2,8 @@ defmodule WendigoWeb.GraphQL.Schema do
   @moduledoc """
   The Wendigo GraphQL schema. Defines queries and mutations.
   """
-  alias Wendigo.Context.{Leagues, Seasons, Teams}
-  alias WendigoWeb.Resolvers.{LeagueResolver, SeasonResolver, TeamResolver}
+  alias Wendigo.Context.{Leagues, Players, Seasons, Teams}
+  alias WendigoWeb.Resolvers.{LeagueResolver, PlayerResolver, SeasonResolver, TeamResolver}
 
   use Absinthe.Schema
 
@@ -53,13 +53,13 @@ defmodule WendigoWeb.GraphQL.Schema do
     @desc "List players on a team"
     field :players, list_of(:player) do
       arg(:team_id, non_null(:id))
-      resolve(&TeamResolver.list_players/3)
+      resolve(&PlayerResolver.list_players/3)
     end
 
     @desc "Get a player"
     field :player, :player do
       arg(:id, non_null(:id))
-      resolve(&TeamResolver.get_player/3)
+      resolve(&PlayerResolver.get_player/3)
     end
   end
 
@@ -119,6 +119,23 @@ defmodule WendigoWeb.GraphQL.Schema do
       arg(:id, non_null(:id))
       resolve(&TeamResolver.delete_team/3)
     end
+
+    @desc "Create a player"
+    field :create_player, :player do
+      arg(:name, non_null(:string))
+      arg(:contact, non_null(:string))
+      arg(:team_id, non_null(:id))
+      arg(:usahn, :string)
+      arg(:position, :string)
+      arg(:jersey_number, :string)
+      resolve(&PlayerResolver.create_player/3)
+    end
+
+    @desc "Delete a player"
+    field :delete_player, :player do
+      arg(:id, non_null(:id))
+      resolve(&PlayerResolver.delete_player/3)
+    end
   end
 
   # Dataloader
@@ -127,6 +144,7 @@ defmodule WendigoWeb.GraphQL.Schema do
     loader =
       Dataloader.new()
       |> Dataloader.add_source(Leagues, Leagues.datasource())
+      |> Dataloader.add_source(Players, Players.datasource())
       |> Dataloader.add_source(Seasons, Seasons.datasource())
       |> Dataloader.add_source(Teams, Teams.datasource())
 

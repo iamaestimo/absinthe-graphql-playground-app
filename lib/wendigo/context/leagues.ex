@@ -12,10 +12,12 @@ defmodule Wendigo.Context.Leagues do
   @default_page_size Application.compile_env(:wendigo, :min_page_size)
 
   @doc "Get a league"
-  def get(id), do: Repo.get(League, id)
+  def get(id),
+    do: Repo.get(League, id)
 
   @doc "Get the first page of leagues"
-  def first_page, do: list(@default_page_size)
+  def first_page,
+    do: list(@default_page_size)
 
   @doc "Get a page of leagues"
   def list(first, offset \\ 0) do
@@ -39,5 +41,6 @@ defmodule Wendigo.Context.Leagues do
     do: Repo.delete(league)
 
   @doc "Defines a new ecto data source"
-  def datasource, do: Dataloader.Ecto.new(Repo)
+  def datasource,
+    do: Dataloader.Ecto.new(Repo)
 end

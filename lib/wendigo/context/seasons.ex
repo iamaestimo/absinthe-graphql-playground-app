@@ -12,10 +12,12 @@ defmodule Wendigo.Context.Seasons do
   @default_page_size Application.compile_env(:wendigo, :min_page_size)
 
   @doc "Get a season"
-  def get(id), do: Repo.get(Season, id)
+  def get(id),
+    do: Repo.get(Season, id)
 
   @doc "Get the first page of seasons"
-  def first_page, do: list(@default_page_size)
+  def first_page,
+    do: list(@default_page_size)
 
   @doc "Get a page of seasons"
   def list(first, offset \\ 0) do
@@ -39,5 +41,6 @@ defmodule Wendigo.Context.Seasons do
     do: Repo.delete(season)
 
   @doc "Defines a new ecto data source"
-  def datasource, do: Dataloader.Ecto.new(Repo)
+  def datasource,
+    do: Dataloader.Ecto.new(Repo)
 end

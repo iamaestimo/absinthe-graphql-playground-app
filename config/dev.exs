@@ -1,5 +1,11 @@
 import Config
 
+# Example CORS for localhost
+# config :cors_plug,
+#  origin: ["http://localhost:5173", "localhost"],
+#  max_age: 86400,
+#  methods: ["GET", "POST"]
+
 # Database
 config :wendigo, Wendigo.Repo,
   username: "postgres",
