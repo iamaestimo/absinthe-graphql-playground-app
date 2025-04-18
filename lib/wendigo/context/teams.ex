@@ -2,10 +2,10 @@ defmodule Wendigo.Context.Teams do
   @moduledoc """
   A data context for managing teams.
   """
+  import Ecto.Query
+
   alias Wendigo.Repo
   alias Wendigo.Schema.Team
-
-  import Ecto.Query
 
   require Logger
 

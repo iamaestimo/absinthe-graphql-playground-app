@@ -2,10 +2,10 @@ defmodule WendigoWeb.GraphQL.Schema do
   @moduledoc """
   The Wendigo GraphQL schema. Defines queries and mutations.
   """
+  use Absinthe.Schema
+
   alias Wendigo.Context.{Leagues, Players, Seasons, Teams}
   alias WendigoWeb.Resolvers.{LeagueResolver, PlayerResolver, SeasonResolver, TeamResolver}
-
-  use Absinthe.Schema
 
   import_types(Absinthe.Type.Custom)
   import_types(WendigoWeb.GraphQL.Types)

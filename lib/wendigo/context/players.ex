@@ -2,10 +2,10 @@ defmodule Wendigo.Context.Players do
   @moduledoc """
   A data context for managing players.
   """
+  import Ecto.Query
+
   alias Wendigo.Repo
   alias Wendigo.Schema.Player
-
-  import Ecto.Query
 
   # Put a max limit on any list queries
   @query_limit Application.compile_env(:wendigo, :max_page_size)

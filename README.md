@@ -1,5 +1,7 @@
 # Project Wendigo
 
+A playground for learning GraphQL using Phoenix, Absinthe, Ecto, and Dataloader.
+
 To start the GraphQL server:
 
   * Run `mix setup` to install and setup dependencies

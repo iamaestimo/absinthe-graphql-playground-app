@@ -2,11 +2,11 @@ defmodule Wendigo.Context.Leagues do
   @moduledoc """
   A data context for managing leagues.
   """
-  alias Wendigo.Repo
-  alias Wendigo.Schema.League
-
   import Ecto.Query
   import Wendigo.Context.Clamp, only: [clamp: 1, non_negative: 1]
+
+  alias Wendigo.Repo
+  alias Wendigo.Schema.League
 
   # Read default page size from compile-time config
   @default_page_size Application.compile_env(:wendigo, :min_page_size)

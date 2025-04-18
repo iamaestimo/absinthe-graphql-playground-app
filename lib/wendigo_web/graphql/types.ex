@@ -4,8 +4,9 @@ defmodule WendigoWeb.GraphQL.Types do
   """
   use Absinthe.Schema.Notation
 
-  alias Wendigo.Context.{Leagues, Seasons, Teams}
   import Absinthe.Resolution.Helpers, only: [dataloader: 1]
+
+  alias Wendigo.Context.{Leagues, Seasons, Teams}
 
   object :league do
     field :id, :id

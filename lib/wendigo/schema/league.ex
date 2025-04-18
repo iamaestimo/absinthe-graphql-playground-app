@@ -2,8 +2,8 @@ defmodule Wendigo.Schema.League do
   @moduledoc """
   Schema for the `leagues` table.
   """
-  import Ecto.Changeset
   use Ecto.Schema
+  import Ecto.Changeset
 
   @type t() :: %__MODULE__{}
 
