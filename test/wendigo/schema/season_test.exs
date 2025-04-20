@@ -19,7 +19,7 @@ defmodule Wendigo.Schema.SeasonTest do
   end
 
   # Test season changeset validations
-  describe "Season.changeset" do
+  describe "Season changeset" do
     test "succeeds on valid params", ctx do
       result = Season.changeset(ctx.valid_params)
       assert result.valid?

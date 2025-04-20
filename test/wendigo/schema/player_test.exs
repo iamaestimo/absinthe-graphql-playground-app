@@ -12,13 +12,14 @@ defmodule Wendigo.Schema.PlayerTest do
       },
       invalid_params: %{
         name: "name_too_long#{Nanoid.generate(100)}",
-        contact: "contact_too_long#{Nanoid.generate(100)}"
+        contact: "contact_too_long#{Nanoid.generate(100)}",
+        team_id: Nanoid.generate()
       }
     }
   end
 
   # Test Player changeset validations
-  describe "Player.changeset" do
+  describe "Player changeset" do
     test "succeeds on valid params", ctx do
       result = Player.changeset(ctx.valid_params)
       assert result.valid?

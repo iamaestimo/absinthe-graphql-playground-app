@@ -19,7 +19,7 @@ defmodule Wendigo.Schema.LeagueTest do
   end
 
   # Test league changeset validations
-  describe "League.changeset" do
+  describe "League changeset" do
     test "succeeds on valid params", ctx do
       result = League.changeset(ctx.valid_params)
       assert result.valid?

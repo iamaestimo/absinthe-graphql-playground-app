@@ -10,7 +10,16 @@ defmodule Wendigo.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      preferred_cli_env: [quality: :test]
+      preferred_cli_env: [quality: :test],
+      test_coverage: [
+        summary: [
+          threshold: 80
+        ],
+        ignore_modules: [
+          WendigoWeb.GraphQL.Schema.Compiled,
+          Wendigo.Migrator
+        ]
+      ]
     ]
   end
 

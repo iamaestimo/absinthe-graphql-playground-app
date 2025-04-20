@@ -1,5 +1,5 @@
 .PHONY: all
-all: format compile lint
+all: format compile quality
 
 .PHONY: format
 format:
@@ -9,13 +9,13 @@ format:
 compile:
 	mix compile --warnings-as-errors --all-warnings
 
-.PHONY: lint
-lint:
-	mix credo --all --strict
-
 .PHONY: test
 test:
 	mix test
+
+.PHONY: quality
+quality:
+	mix quality
 
 .PHONY: clean
 clean:

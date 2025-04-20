@@ -19,7 +19,7 @@ defmodule Wendigo.Schema.TeamTest do
   end
 
   # Test Team changeset validations
-  describe "Team.changeset" do
+  describe "Team changeset" do
     test "succeeds on valid params", ctx do
       result = Team.changeset(ctx.valid_params)
       assert result.valid?
