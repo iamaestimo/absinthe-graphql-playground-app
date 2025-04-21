@@ -13,7 +13,7 @@ defmodule WendigoWeb.Error do
     {:error, %{message: message, details: error_details(changeset)}}
   end
 
-  # Get ecto changeset error detail. This was taken directly from Phoenix.
+  # Get ecto changeset error detail.
   defp error_details(changeset) do
     Ecto.Changeset.traverse_errors(changeset, fn {message, opts} ->
       Regex.replace(~r"%{(\w+)}", message, fn _, key ->

@@ -1,12 +1,9 @@
 defmodule Wendigo.Context.LeaguesTest do
-  use ExUnit.Case, async: true
-
-  alias Ecto.Adapters.SQL.Sandbox
+  use Wendigo.DataCase, async: true
   alias Wendigo.Context.Leagues
 
   # Setup test context
   setup do
-    :ok = Sandbox.checkout(Wendigo.Repo)
     %{args: %{name: "Test League", level: "Advanced"}}
   end
 

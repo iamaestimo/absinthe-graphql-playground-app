@@ -27,7 +27,7 @@ defmodule Wendigo.Context.Players do
     do: Repo.insert(Player.changeset(args))
 
   @doc "Delete a player"
-  def delete(player),
+  def delete(%Player{} = player),
     do: Repo.delete(player)
 
   @doc "Defines a new ecto data source"

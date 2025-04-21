@@ -38,16 +38,10 @@ defmodule Wendigo.Context.Teams do
     do: Repo.insert(Team.changeset(args))
 
   @doc "Delete a team"
-  def delete(team),
+  def delete(%Team{} = team),
     do: Repo.delete(team)
 
   @doc "Defines a new ecto data source"
   def datasource,
-    do: Dataloader.Ecto.new(Repo, query: &query/2)
-
-  @doc "An example dataloader query function."
-  def query(queriable, args) do
-    Logger.debug("Teams.query, args = #{inspect(args)}")
-    queriable
-  end
+    do: Dataloader.Ecto.new(Repo)
 end

@@ -33,11 +33,11 @@ defmodule Wendigo.Context.Leagues do
     do: Repo.insert(League.changeset(args))
 
   @doc "Update a league"
-  def update(league, args),
+  def update(%League{} = league, args),
     do: Repo.update(League.changeset(league, args))
 
   @doc "Delete a league"
-  def delete(league),
+  def delete(%League{} = league),
     do: Repo.delete(league)
 
   @doc "Defines a new ecto data source"

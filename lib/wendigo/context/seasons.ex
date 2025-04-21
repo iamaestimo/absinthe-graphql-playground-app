@@ -33,11 +33,11 @@ defmodule Wendigo.Context.Seasons do
     do: Repo.insert(Season.changeset(args))
 
   @doc "Update a season"
-  def update(season, args),
+  def update(%Season{} = season, args),
     do: Repo.update(Season.changeset(season, args))
 
   @doc "Delete a season"
-  def delete(season),
+  def delete(%Season{} = season),
     do: Repo.delete(season)
 
   @doc "Defines a new ecto data source"

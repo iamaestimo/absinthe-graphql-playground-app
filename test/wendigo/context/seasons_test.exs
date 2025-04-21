@@ -1,13 +1,9 @@
 defmodule Wendigo.Context.SeasonsTest do
-  use ExUnit.Case, async: true
-
-  alias Ecto.Adapters.SQL.Sandbox
+  use Wendigo.DataCase, async: true
   alias Wendigo.Context.Seasons
 
   # Setup test context
   setup do
-    :ok = Sandbox.checkout(Wendigo.Repo)
-
     %{
       args: %{
         name: "Test Season",

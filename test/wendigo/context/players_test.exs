@@ -1,13 +1,11 @@
 defmodule Wendigo.Context.PlayersTest do
-  use ExUnit.Case, async: true
+  use Wendigo.DataCase, async: true
 
-  alias Ecto.Adapters.SQL.Sandbox
   alias Wendigo.Context.Players
   alias Wendigo.TestContexts
 
   # Setup test context
   setup do
-    :ok = Sandbox.checkout(Wendigo.Repo)
     {:ok, team} = TestContexts.setup_team()
     %{args: %{name: "Jon Doe", contact: "jon.doe@email.com", team_id: team.id}}
   end
