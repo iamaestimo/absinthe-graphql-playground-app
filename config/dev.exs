@@ -8,8 +8,8 @@ import Config
 
 # Database
 config :wendigo, Wendigo.Repo,
-  username: "postgres",
-  password: "password1",
+  username: System.get_env("POSTGRES_USER"),
+  password: System.get_env("POSTGRES_PASSWORD"),
   hostname: "localhost",
   database: "wendigo_dev",
   stacktrace: true,
@@ -30,3 +30,5 @@ config :wendigo, dev_routes: true
 config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
+
+config :appsignal, :config, active: true

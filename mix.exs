@@ -57,7 +57,9 @@ defmodule Wendigo.MixProject do
       {:absinthe_plug, "~> 1.5.8"},
       {:cors_plug, "~> 3.0"},
       {:dataloader, "~> 2.0.0"},
-      {:credo, "~> 1.7.11", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7.11", only: [:dev, :test], runtime: false},
+      {:appsignal, "~> 2.8"},
+      {:appsignal_phoenix, "~> 2.0"}
     ]
   end
 
