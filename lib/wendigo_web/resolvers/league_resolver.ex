@@ -7,9 +7,16 @@ defmodule WendigoWeb.Resolvers.LeagueResolver do
 
   def get_league(_parent, %{id: id}, _resolution) do
     case Leagues.get(id) do
-      nil -> Error.new("League not found: #{id}")
-      league -> {:ok, league}
+      nil ->
+        # Instead of returning a handled error, raise an exception
+        raise "League not found with ID: #{id}" # Or use a specific exception type if you prefer
+      league ->
+        {:ok, league}
     end
+    # case Leagues.get(id) do
+    #   nil -> Error.new("League not found: #{id}")
+    #   league -> {:ok, league}
+    # end
   end
 
   def list_leagues(_parent, %{first: first, offset: offset}, _resolution) do

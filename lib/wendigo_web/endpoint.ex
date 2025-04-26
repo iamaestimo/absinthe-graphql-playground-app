@@ -35,9 +35,6 @@ defmodule WendigoWeb.Endpoint do
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
-    
-  plug Absinthe.Plug,
-    schema: WendigoWeb.GraphQL.Schema
 
   plug Plug.MethodOverride
   plug Plug.Head

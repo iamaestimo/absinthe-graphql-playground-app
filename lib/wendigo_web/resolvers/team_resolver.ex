@@ -5,10 +5,19 @@ defmodule WendigoWeb.Resolvers.TeamResolver do
   alias Wendigo.Context.Teams
   alias WendigoWeb.Error
 
+  # def get_team(_parent, %{id: id}, _resolution) do
+  #   case Teams.get(id) do
+  #     nil -> Error.new("Team not found: #{id}")
+  #     team -> {:ok, team}
+  #   end
+  # end
+
   def get_team(_parent, %{id: id}, _resolution) do
     case Teams.get(id) do
-      nil -> Error.new("Team not found: #{id}")
-      team -> {:ok, team}
+      nil ->
+        {:error, "Team not found: #{id}"}  # << Return error tuple instead of raising
+      team ->
+        {:ok, team}
     end
   end
 
@@ -35,4 +44,14 @@ defmodule WendigoWeb.Resolvers.TeamResolver do
       team -> Teams.delete(team)
     end
   end
+
+  # defp report_error(message, metadata) do
+  #   try do
+  #     raise message
+  #   rescue
+  #     exception ->
+  #       stacktrace = __STACKTRACE__
+  #       Appsignal.send_error(exception, stacktrace, metadata)
+  #   end
+  # end
 end

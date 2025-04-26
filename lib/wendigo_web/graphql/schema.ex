@@ -154,4 +154,9 @@ defmodule WendigoWeb.GraphQL.Schema do
   def plugins do
     [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
   end
+
+  # Middleware
+  def middleware(middleware, _field, _object) do
+    middleware ++ [WendigoWeb.Middleware.ErrorReporter]
+  end
 end
